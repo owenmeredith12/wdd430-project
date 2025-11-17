@@ -1,0 +1,9 @@
+/* 1. Imports must be first */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600&display=swap');
+@import "tailwindcss";
+
+
+/* 2. Optional: global styles */
+html, body {
+  font-family: 'Oswald', sans-serif;
+}
