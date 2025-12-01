@@ -9,7 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "next": "16.0.3",
+    "postgres": "^3.4.7",
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },
