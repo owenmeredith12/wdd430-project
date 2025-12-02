@@ -92,27 +92,20 @@ const runtime = 'nodejs'; // important for Postgres client
 const sql = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$postgres$2f$src$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"])(process.env.POSTGRES_URL, {
     ssl: 'require'
 });
-async function listProducts() {
+async function listUsers() {
     const data = await sql`
-    SELECT 
-      p.name AS product_name,
-      p.price,
-      p.description,
-      a.id AS artisan_id,
-      u.name AS artisan_name,
-      c.name AS category_name
-    FROM products p
-    JOIN artisans a ON p.artisan_id = a.id
-    JOIN users u ON a.user_id = u.id
-    JOIN categories c ON p.category_id = c.id
-    ORDER BY p.name;
+    SELECT
+      u.id AS user_id,
+      u.name AS user_name,
+      u.email
+    FROM users u
   `;
     return data;
 }
 async function GET() {
     try {
-        const products = await listProducts();
-        return Response.json(products);
+        const users = await listUsers();
+        return Response.json(users);
     } catch (error) {
         console.error(error);
         return Response.json({

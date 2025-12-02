@@ -291,157 +291,171 @@ const revenue = [
 
 __turbopack_context__.s([
     "GET",
-    ()=>GET
+    ()=>GET,
+    "runtime",
+    ()=>runtime
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$bcryptjs$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/bcryptjs/index.js [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$postgres$2f$src$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/postgres/src/index.js [app-route] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$data$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/lib/data.ts [app-route] (ecmascript)"); // <-- adjust path as needed
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$data$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/lib/data.ts [app-route] (ecmascript)"); // adjust path as needed
 ;
 ;
 ;
-// Connect to Vercel Postgres
+const runtime = 'nodejs';
 const sql = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$postgres$2f$src$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"])(process.env.POSTGRES_URL, {
     ssl: 'require'
 });
 /* --------------------------------------------------------
    USERS
--------------------------------------------------------- */ async function seedUsers() {
-    await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
-    await sql`
+-------------------------------------------------------- */ async function seedUsers(sqlInstance) {
+    await sqlInstance`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+    await sqlInstance`
     CREATE TABLE IF NOT EXISTS users (
       id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
       name VARCHAR(255) NOT NULL,
       email TEXT NOT NULL UNIQUE,
       password TEXT NOT NULL
-    );
+    )
   `;
-    const insertedUsers = await Promise.all(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$data$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["users"].map(async (user)=>{
-        const hashedPassword = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$bcryptjs$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].hash(user.password, 10);
-        return sql`
-        INSERT INTO users (id, name, email, password)
-        VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
-        ON CONFLICT (id) DO NOTHING;
-      `;
-    }));
-    return insertedUsers;
+    for (const user of __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$data$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["users"]){
+        const hashed = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$bcryptjs$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].hash(user.password, 10);
+        await sqlInstance`
+      INSERT INTO users (id, name, email, password)
+      VALUES (${user.id}, ${user.name}, ${user.email}, ${hashed})
+      ON CONFLICT (id) DO NOTHING
+    `;
+    }
 }
 /* --------------------------------------------------------
    ARTISANS
--------------------------------------------------------- */ async function seedArtisans() {
-    await sql`
+-------------------------------------------------------- */ async function seedArtisans(sqlInstance) {
+    await sqlInstance`
     CREATE TABLE IF NOT EXISTS artisans (
       id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
       user_id UUID NOT NULL REFERENCES users(id),
       bio TEXT NOT NULL,
       location VARCHAR(255) NOT NULL
-    );
+    )
   `;
-    const inserted = await Promise.all(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$data$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["artisans"].map((artisan)=>sql`
-        INSERT INTO artisans (id, user_id, bio, location)
-        VALUES (${artisan.id}, ${artisan.user_id}, ${artisan.bio}, ${artisan.location})
-        ON CONFLICT (id) DO NOTHING;
-      `));
-    return inserted;
+    for (const artisan of __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$data$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["artisans"]){
+        await sqlInstance`
+      INSERT INTO artisans (id, user_id, bio, location)
+      VALUES (${artisan.id}, ${artisan.user_id}, ${artisan.bio}, ${artisan.location})
+      ON CONFLICT (id) DO NOTHING
+    `;
+    }
 }
 /* --------------------------------------------------------
    CATEGORIES
--------------------------------------------------------- */ async function seedCategories() {
-    await sql`
+-------------------------------------------------------- */ async function seedCategories(sqlInstance) {
+    await sqlInstance`
     CREATE TABLE IF NOT EXISTS categories (
       id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
       name VARCHAR(255) NOT NULL UNIQUE
-    );
+    )
   `;
-    const inserted = await Promise.all(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$data$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["categories"].map((cat)=>sql`
-        INSERT INTO categories (id, name)
-        VALUES (${cat.id}, ${cat.name})
-        ON CONFLICT (id) DO NOTHING;
-      `));
-    return inserted;
+    for (const cat of __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$data$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["categories"]){
+        await sqlInstance`
+      INSERT INTO categories (id, name)
+      VALUES (${cat.id}, ${cat.name})
+      ON CONFLICT (id) DO NOTHING
+    `;
+    }
 }
 /* --------------------------------------------------------
    PRODUCTS
--------------------------------------------------------- */ async function seedProducts() {
-    await sql`
+-------------------------------------------------------- */ async function seedProducts(sqlInstance) {
+    await sqlInstance`
     CREATE TABLE IF NOT EXISTS products (
       id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
       artisan_id UUID NOT NULL REFERENCES artisans(id),
       name VARCHAR(255) NOT NULL,
       description TEXT NOT NULL,
-      price NUMERIC(10, 2) NOT NULL,
+      price NUMERIC(10,2) NOT NULL,
       category_id UUID NOT NULL REFERENCES categories(id),
       tags TEXT[],
       image_url TEXT
-    );
+    )
   `;
-    const inserted = await Promise.all(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$data$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["products"].map((product)=>sql`
-        INSERT INTO products (id, artisan_id, name, description, price, category_id, tags, image_url)
-        VALUES (
-          ${product.id},
-          ${product.artisan_id},
-          ${product.name},
-          ${product.description},
-          ${product.price},
-          ${product.category_id},
-          ${product.tags},
-          ${product.image_url}
-        )
-        ON CONFLICT (id) DO NOTHING;
-      `));
-    return inserted;
+    for (const product of __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$data$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["products"]){
+        await sqlInstance`
+      INSERT INTO products (id, artisan_id, name, description, price, category_id, tags, image_url)
+      VALUES (
+        ${product.id},
+        ${product.artisan_id},
+        ${product.name},
+        ${product.description},
+        ${product.price},
+        ${product.category_id},
+        ${product.tags},
+        ${product.image_url}
+      )
+      ON CONFLICT (id) DO NOTHING
+    `;
+    }
 }
 /* --------------------------------------------------------
    REVIEWS
--------------------------------------------------------- */ async function seedReviews() {
-    await sql`
+-------------------------------------------------------- */ async function seedReviews(sqlInstance) {
+    await sqlInstance`
     CREATE TABLE IF NOT EXISTS reviews (
       id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
       product_id UUID NOT NULL REFERENCES products(id),
       user_id UUID NOT NULL REFERENCES users(id),
       rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
       comment TEXT NOT NULL
-    );
+    )
   `;
-    const inserted = await Promise.all(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$data$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["reviews"].map((rev)=>sql`
-        INSERT INTO reviews (id, product_id, user_id, rating, comment)
-        VALUES (${rev.id}, ${rev.product_id}, ${rev.user_id}, ${rev.rating}, ${rev.comment})
-        ON CONFLICT (id) DO NOTHING;
-      `));
-    return inserted;
+    for (const rev of __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$data$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["reviews"]){
+        await sqlInstance`
+      INSERT INTO reviews (id, product_id, user_id, rating, comment)
+      VALUES (${rev.id}, ${rev.product_id}, ${rev.user_id}, ${rev.rating}, ${rev.comment})
+      ON CONFLICT (id) DO NOTHING
+    `;
+    }
 }
 /* --------------------------------------------------------
    REVENUE
--------------------------------------------------------- */ async function seedRevenue() {
-    await sql`
+-------------------------------------------------------- */ async function seedRevenue(sqlInstance) {
+    await sqlInstance`
     CREATE TABLE IF NOT EXISTS revenue (
       month VARCHAR(4) NOT NULL UNIQUE,
       revenue INT NOT NULL
-    );
+    )
   `;
-    const inserted = await Promise.all(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$data$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["revenue"].map((r)=>sql`
-        INSERT INTO revenue (month, revenue)
-        VALUES (${r.month}, ${r.revenue})
-        ON CONFLICT (month) DO NOTHING;
-      `));
-    return inserted;
+    for (const r of __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$data$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["revenue"]){
+        await sqlInstance`
+      INSERT INTO revenue (month, revenue)
+      VALUES (${r.month}, ${r.revenue})
+      ON CONFLICT (month) DO NOTHING
+    `;
+    }
 }
 async function GET() {
     try {
-        await sql.begin((sql)=>[
-                seedUsers(),
-                seedArtisans(),
-                seedCategories(),
-                seedProducts(),
-                seedReviews(),
-                seedRevenue()
-            ]);
+        // Run everything in a single transaction
+        await sql.begin(async (tx)=>{
+            console.log('Seeding users...');
+            await seedUsers(tx);
+            console.log('Seeding artisans...');
+            await seedArtisans(tx);
+            console.log('Seeding categories...');
+            await seedCategories(tx);
+            console.log('Seeding products...');
+            await seedProducts(tx);
+            console.log('Seeding reviews...');
+            await seedReviews(tx);
+            console.log('Seeding revenue...');
+            await seedRevenue(tx);
+        });
+        console.log('Database seeded successfully!');
         return Response.json({
             message: 'Handcrafted Haven database seeded successfully!'
         });
     } catch (error) {
-        console.error(error);
+        console.error('Seeding error:', error);
         return Response.json({
-            error
+            error: error.message
         }, {
             status: 500
         });
