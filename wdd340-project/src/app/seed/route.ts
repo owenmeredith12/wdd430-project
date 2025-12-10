@@ -46,6 +46,7 @@ async function seedArtisans(sqlInstance: any) {
     CREATE TABLE IF NOT EXISTS artisans (
       id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
       user_id UUID NOT NULL REFERENCES users(id),
+        name VARCHAR(35) NOT NULL,
       bio TEXT NOT NULL,
       location VARCHAR(255) NOT NULL
     )
@@ -53,8 +54,8 @@ async function seedArtisans(sqlInstance: any) {
 
   for (const artisan of artisans) {
     await sqlInstance`
-      INSERT INTO artisans (id, user_id, bio, location)
-      VALUES (${artisan.id}, ${artisan.user_id}, ${artisan.bio}, ${artisan.location})
+      INSERT INTO artisans (id, user_id, name, bio, location)
+      VALUES (${artisan.id},  ${artisan.user_id}, ${artisan.name}, ${artisan.bio}, ${artisan.location})
       ON CONFLICT (id) DO NOTHING
     `;
   }

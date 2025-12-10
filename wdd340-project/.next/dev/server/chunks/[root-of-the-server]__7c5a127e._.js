@@ -123,18 +123,21 @@ const users = [
 const artisans = [
     {
         id: 'e6a4c1dc-ecb7-4a15-9c82-63dfbf1c1a01',
+        name: 'Olivia Hart',
         user_id: users[0].id,
         bio: 'Ceramic artist crafting eco-friendly pottery and functional clay goods.',
         location: 'Portland, OR'
     },
     {
         id: '84cee934-4fb7-4550-a44c-6ed0a388c705',
+        name: 'Mason Reed',
         user_id: users[1].id,
         bio: 'Woodworker creating rustic minimalist handmade furniture.',
         location: 'Nashville, TN'
     },
     {
         id: '13a71e20-fb4d-4c1c-bbcd-2a5d4ca40e7e',
+        name: 'Sofia Lane',
         user_id: users[2].id,
         bio: 'Jewelry designer specializing in recycled metals & natural gemstones.',
         location: 'Santa Fe, NM'
@@ -333,14 +336,15 @@ const sql = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$
     CREATE TABLE IF NOT EXISTS artisans (
       id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
       user_id UUID NOT NULL REFERENCES users(id),
+        name VARCHAR(35) NOT NULL,
       bio TEXT NOT NULL,
       location VARCHAR(255) NOT NULL
     )
   `;
     for (const artisan of __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$data$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["artisans"]){
         await sqlInstance`
-      INSERT INTO artisans (id, user_id, bio, location)
-      VALUES (${artisan.id}, ${artisan.user_id}, ${artisan.bio}, ${artisan.location})
+      INSERT INTO artisans (id, user_id, name, bio, location)
+      VALUES (${artisan.id},  ${artisan.user_id}, ${artisan.name}, ${artisan.bio}, ${artisan.location})
       ON CONFLICT (id) DO NOTHING
     `;
     }

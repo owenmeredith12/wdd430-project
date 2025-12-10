@@ -38,13 +38,8 @@ export default function RootLayout({
                 </a>
               </li>
               <li>
-                <a href="/dashboard" className="hover:text-blue-500">
-                  Dashboard
-                </a>
-              </li>
-              <li>
-                <a href="/dashboard/products" className="hover:text-blue-500">
-                  Products
+                <a href="/marketplace" className="hover:text-blue-500">
+                  Marketplace
                 </a>
               </li>
               <li>
@@ -55,6 +50,11 @@ export default function RootLayout({
               <li>
                 <a href="/account" className="hover:text-blue-500">
                   Account
+                </a>
+              </li>
+              <li>
+                <a href="/login" className="hover:text-blue-500">
+                  Login
                 </a>
               </li>
             </ul>
