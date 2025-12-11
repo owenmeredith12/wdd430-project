@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "../components/ui/button";
 
+export const dynamic = 'force-dynamic';
+
 type Product = {
   id: string;
   name: string;
