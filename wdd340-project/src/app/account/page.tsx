@@ -1,38 +1,40 @@
-import { getServerSession } from "next-auth/next"
-import { redirect } from "next/navigation"
-import { authOptions } from "../api/auth/[...nextauth]/route"
-import postgres from "postgres"
-import Image from "next/image"
-import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card"
-import { Button } from "../components/ui/button"
+// app/account/page.tsx
+import { getServerSession } from "next-auth/next";
+import { redirect } from "next/navigation";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import Link from "next/link";
+import postgres from "postgres";
+import Image from "next/image";
+import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
+import { Button } from "../components/ui/button";
 
 // PostgreSQL connection
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" })
+const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
 type Product = {
-  id: string
-  name: string
-  description: string
-  price: number
-  image_url?: string | null
-}
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image_url?: string | null;
+};
 
 export default async function AccountPage() {
   // Get the user session
-  const session = await getServerSession(authOptions)
-  if (!session) redirect("/login")
+  const session = await getServerSession(authOptions);
+  if (!session) redirect("/login");
 
-const { user } = session
+  const { user } = session;
 
   // Find the artisan associated with this username
-const artisanResult = await sql`
-  SELECT a.id
-  FROM artisans a
-  JOIN users u ON u.id = a.user_id
-  WHERE u.name = ${user.name}
-  LIMIT 1
-`
-  const artisanId = artisanResult[0]?.id
+  const artisanResult = await sql`
+    SELECT a.id
+    FROM artisans a
+    JOIN users u ON u.id = a.user_id
+    WHERE u.name = ${user.name}
+    LIMIT 1
+  `;
+  const artisanId = artisanResult[0]?.id;
 
   if (!artisanId) {
     return (
@@ -40,7 +42,7 @@ const artisanResult = await sql`
         <h1 className="text-3xl font-bold">Account Page</h1>
         <p className="mt-4 text-lg">No artisan profile found for this user.</p>
       </div>
-    )
+    );
   }
 
   // Fetch products for this artisan
@@ -48,11 +50,18 @@ const artisanResult = await sql`
     SELECT id, name, description, price, image_url
     FROM products
     WHERE artisan_id = ${artisanId}
-  `
+  `;
 
   return (
     <div className="p-10 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">Your Products</h1>
+      {/* Header with Add Product button */}
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold">Your Products</h1>
+        <Link href="/product/new">
+          <Button className="rounded-xl">Add Product</Button>
+        </Link>
+      </div>
+
       <p className="mb-8 text-lg">
         Welcome, {user.name || user.email}
       </p>
@@ -82,14 +91,19 @@ const artisanResult = await sql`
               )}
               <p className="text-gray-700 mb-4 line-clamp-3">{product.description}</p>
               <p className="text-lg font-medium mb-4">${product.price}</p>
-              <Button className="w-full rounded-xl">Edit Product</Button>
+              <Link href={`/product/update?id=${product.id}`}>
+                <Button className="w-full rounded-xl">Edit Product</Button>
+              </Link>
             </CardContent>
           </Card>
         ))}
       </div>
     </div>
-  )
+  );
 }
+
+
+
 
 
 // // app/account/page.tsx

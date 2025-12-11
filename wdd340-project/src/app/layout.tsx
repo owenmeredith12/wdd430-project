@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./styles/globals.css";
+import LogoutButton from "./components/ui/logoutButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -53,9 +54,12 @@ export default function RootLayout({
                 </a>
               </li>
               <li>
-                <a href="/login" className="hover:text-blue-500">
+                <a href="/login" className="hover:text-blue-500" >
                   Login
                 </a>
+              </li>
+              <li>
+                <LogoutButton />
               </li>
             </ul>
           </nav>

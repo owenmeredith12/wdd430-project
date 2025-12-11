@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 46, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Owner/Documents/wdd430/wdd430-project/wdd340-project/src/app/api/logout/route.ts"],"sourcesContent":["// app/api/logout/route.ts\r\nimport { NextResponse } from \"next/server\";\r\n\r\nexport const GET = async () => {\r\n  const response = NextResponse.json({ message: \"Logged out successfully\" });\r\n\r\n  // Delete the NextAuth session cookies\r\n  response.cookies.delete(\"next-auth.session-token\"); // JWT sessions\r\n  response.cookies.delete(\"__Secure-next-auth.session-token\"); // Secure variant\r\n  response.cookies.delete(\"__next_hmr_refresh_hash__\"); // JWT sessions\r\n  response.cookies.delete(\"next-auth.callback-url\"); // Secure variant\r\n\r\n  return response;\r\n};\r\n"],"names":[],"mappings":"AAAA,0BAA0B;;;;;AAC1B;;AAEO,MAAM,MAAM;IACjB,MAAM,WAAW,gJAAY,CAAC,IAAI,CAAC;QAAE,SAAS;IAA0B;IAExE,sCAAsC;IACtC,SAAS,OAAO,CAAC,MAAM,CAAC,4BAA4B,eAAe;IACnE,SAAS,OAAO,CAAC,MAAM,CAAC,qCAAqC,iBAAiB;IAC9E,SAAS,OAAO,CAAC,MAAM,CAAC,8BAA8B,eAAe;IACrE,SAAS,OAAO,CAAC,MAAM,CAAC,2BAA2B,iBAAiB;IAEpE,OAAO;AACT"}}]
+}

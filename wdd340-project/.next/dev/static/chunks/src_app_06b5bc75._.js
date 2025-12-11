@@ -316,6 +316,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/components/ui/input.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/components/ui/button.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
@@ -326,17 +327,20 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+;
 function MarketplaceClient(t0) {
     _s();
-    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(32);
-    if ($[0] !== "602b9807415c6f02171690a3920b80fa91357abf7612fbd73b7af027c9ad1f6d") {
-        for(let $i = 0; $i < 32; $i += 1){
+    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(46);
+    if ($[0] !== "594cec80073a8cae706c319947d2b594f5c4773b006d351b01c5fef32f43787f") {
+        for(let $i = 0; $i < 46; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "602b9807415c6f02171690a3920b80fa91357abf7612fbd73b7af027c9ad1f6d";
+        $[0] = "594cec80073a8cae706c319947d2b594f5c4773b006d351b01c5fef32f43787f";
     }
     const { listings } = t0;
     const [search, setSearch] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [minPrice, setMinPrice] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [maxPrice, setMaxPrice] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     let T0;
     let t1;
     let t2;
@@ -345,136 +349,220 @@ function MarketplaceClient(t0) {
     let t5;
     let t6;
     let t7;
-    if ($[1] !== listings || $[2] !== search) {
+    if ($[1] !== listings || $[2] !== maxPrice || $[3] !== minPrice || $[4] !== search) {
         let t8;
-        if ($[11] !== search) {
+        if ($[13] !== maxPrice || $[14] !== minPrice || $[15] !== search) {
             t8 = ({
-                "MarketplaceClient[listings.filter()]": (item)=>item.title.toLowerCase().includes(search.toLowerCase())
+                "MarketplaceClient[listings.filter()]": (item)=>{
+                    const matchesSearch = item.title.toLowerCase().includes(search.toLowerCase());
+                    const matchesMinPrice = minPrice ? item.price >= parseFloat(minPrice) : true;
+                    const matchesMaxPrice = maxPrice ? item.price <= parseFloat(maxPrice) : true;
+                    return matchesSearch && matchesMinPrice && matchesMaxPrice;
+                }
             })["MarketplaceClient[listings.filter()]"];
-            $[11] = search;
-            $[12] = t8;
+            $[13] = maxPrice;
+            $[14] = minPrice;
+            $[15] = search;
+            $[16] = t8;
         } else {
-            t8 = $[12];
+            t8 = $[16];
         }
         const filteredListings = listings.filter(t8);
         T0 = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div;
-        if ($[13] === Symbol.for("react.memo_cache_sentinel")) {
+        if ($[17] === Symbol.for("react.memo_cache_sentinel")) {
             t3 = {
                 opacity: 0
             };
             t4 = {
                 opacity: 1
             };
-            $[13] = t3;
-            $[14] = t4;
+            $[17] = t3;
+            $[18] = t4;
         } else {
-            t3 = $[13];
-            t4 = $[14];
+            t3 = $[17];
+            t4 = $[18];
         }
         t5 = "p-8 max-w-7xl mx-auto";
         let t9;
-        if ($[15] === Symbol.for("react.memo_cache_sentinel")) {
+        if ($[19] === Symbol.for("react.memo_cache_sentinel")) {
             t9 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                 className: "text-4xl font-bold",
                 children: "Marketplace"
             }, void 0, false, {
                 fileName: "[project]/src/app/marketplace/markeplaceClient.tsx",
-                lineNumber: 63,
+                lineNumber: 80,
                 columnNumber: 12
             }, this);
-            $[15] = t9;
+            $[19] = t9;
         } else {
-            t9 = $[15];
+            t9 = $[19];
         }
         let t10;
-        if ($[16] === Symbol.for("react.memo_cache_sentinel")) {
+        if ($[20] === Symbol.for("react.memo_cache_sentinel")) {
             t10 = ({
                 "MarketplaceClient[<Input>.onChange]": (e)=>setSearch(e.target.value)
             })["MarketplaceClient[<Input>.onChange]"];
-            $[16] = t10;
+            $[20] = t10;
         } else {
-            t10 = $[16];
+            t10 = $[20];
         }
-        if ($[17] !== search) {
+        let t11;
+        if ($[21] !== search) {
+            t11 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                placeholder: "Search handcrafted items...",
+                value: search,
+                onChange: t10,
+                className: "max-w-sm"
+            }, void 0, false, {
+                fileName: "[project]/src/app/marketplace/markeplaceClient.tsx",
+                lineNumber: 96,
+                columnNumber: 13
+            }, this);
+            $[21] = search;
+            $[22] = t11;
+        } else {
+            t11 = $[22];
+        }
+        let t12;
+        if ($[23] === Symbol.for("react.memo_cache_sentinel")) {
+            t12 = ({
+                "MarketplaceClient[<Input>.onChange]": (e_0)=>setMinPrice(e_0.target.value)
+            })["MarketplaceClient[<Input>.onChange]"];
+            $[23] = t12;
+        } else {
+            t12 = $[23];
+        }
+        let t13;
+        if ($[24] !== minPrice) {
+            t13 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                type: "number",
+                placeholder: "Min Price",
+                value: minPrice,
+                onChange: t12,
+                className: "w-24"
+            }, void 0, false, {
+                fileName: "[project]/src/app/marketplace/markeplaceClient.tsx",
+                lineNumber: 113,
+                columnNumber: 13
+            }, this);
+            $[24] = minPrice;
+            $[25] = t13;
+        } else {
+            t13 = $[25];
+        }
+        let t14;
+        if ($[26] === Symbol.for("react.memo_cache_sentinel")) {
+            t14 = ({
+                "MarketplaceClient[<Input>.onChange]": (e_1)=>setMaxPrice(e_1.target.value)
+            })["MarketplaceClient[<Input>.onChange]"];
+            $[26] = t14;
+        } else {
+            t14 = $[26];
+        }
+        let t15;
+        if ($[27] !== maxPrice) {
+            t15 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                type: "number",
+                placeholder: "Max Price",
+                value: maxPrice,
+                onChange: t14,
+                className: "w-24"
+            }, void 0, false, {
+                fileName: "[project]/src/app/marketplace/markeplaceClient.tsx",
+                lineNumber: 130,
+                columnNumber: 13
+            }, this);
+            $[27] = maxPrice;
+            $[28] = t15;
+        } else {
+            t15 = $[28];
+        }
+        if ($[29] !== t11 || $[30] !== t13 || $[31] !== t15) {
             t6 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8",
                 children: [
                     t9,
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                        placeholder: "Search handcrafted items...",
-                        value: search,
-                        onChange: t10,
-                        className: "max-w-sm"
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex flex-col sm:flex-row gap-2 items-center",
+                        children: [
+                            t11,
+                            t13,
+                            t15
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/src/app/marketplace/markeplaceClient.tsx",
-                        lineNumber: 78,
+                        lineNumber: 137,
                         columnNumber: 105
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/marketplace/markeplaceClient.tsx",
-                lineNumber: 78,
+                lineNumber: 137,
                 columnNumber: 12
             }, this);
-            $[17] = search;
-            $[18] = t6;
+            $[29] = t11;
+            $[30] = t13;
+            $[31] = t15;
+            $[32] = t6;
         } else {
-            t6 = $[18];
+            t6 = $[32];
         }
-        if ($[19] !== listings.length) {
+        if ($[33] !== listings.length) {
             t7 = listings.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "text-center text-gray-500 text-lg mt-20",
                 children: "No items available yet. Check back soon!"
             }, void 0, false, {
                 fileName: "[project]/src/app/marketplace/markeplaceClient.tsx",
-                lineNumber: 85,
+                lineNumber: 146,
                 columnNumber: 37
             }, this);
-            $[19] = listings.length;
-            $[20] = t7;
+            $[33] = listings.length;
+            $[34] = t7;
         } else {
-            t7 = $[20];
+            t7 = $[34];
         }
         t1 = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6";
         t2 = filteredListings.map(_MarketplaceClientFilteredListingsMap);
         $[1] = listings;
-        $[2] = search;
-        $[3] = T0;
-        $[4] = t1;
-        $[5] = t2;
-        $[6] = t3;
-        $[7] = t4;
-        $[8] = t5;
-        $[9] = t6;
-        $[10] = t7;
+        $[2] = maxPrice;
+        $[3] = minPrice;
+        $[4] = search;
+        $[5] = T0;
+        $[6] = t1;
+        $[7] = t2;
+        $[8] = t3;
+        $[9] = t4;
+        $[10] = t5;
+        $[11] = t6;
+        $[12] = t7;
     } else {
-        T0 = $[3];
-        t1 = $[4];
-        t2 = $[5];
-        t3 = $[6];
-        t4 = $[7];
-        t5 = $[8];
-        t6 = $[9];
-        t7 = $[10];
+        T0 = $[5];
+        t1 = $[6];
+        t2 = $[7];
+        t3 = $[8];
+        t4 = $[9];
+        t5 = $[10];
+        t6 = $[11];
+        t7 = $[12];
     }
     let t8;
-    if ($[21] !== t1 || $[22] !== t2) {
+    if ($[35] !== t1 || $[36] !== t2) {
         t8 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: t1,
             children: t2
         }, void 0, false, {
             fileName: "[project]/src/app/marketplace/markeplaceClient.tsx",
-            lineNumber: 115,
+            lineNumber: 178,
             columnNumber: 10
         }, this);
-        $[21] = t1;
-        $[22] = t2;
-        $[23] = t8;
+        $[35] = t1;
+        $[36] = t2;
+        $[37] = t8;
     } else {
-        t8 = $[23];
+        t8 = $[37];
     }
     let t9;
-    if ($[24] !== T0 || $[25] !== t3 || $[26] !== t4 || $[27] !== t5 || $[28] !== t6 || $[29] !== t7 || $[30] !== t8) {
+    if ($[38] !== T0 || $[39] !== t3 || $[40] !== t4 || $[41] !== t5 || $[42] !== t6 || $[43] !== t7 || $[44] !== t8) {
         t9 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(T0, {
             initial: t3,
             animate: t4,
@@ -486,23 +574,23 @@ function MarketplaceClient(t0) {
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/marketplace/markeplaceClient.tsx",
-            lineNumber: 124,
+            lineNumber: 187,
             columnNumber: 10
         }, this);
-        $[24] = T0;
-        $[25] = t3;
-        $[26] = t4;
-        $[27] = t5;
-        $[28] = t6;
-        $[29] = t7;
-        $[30] = t8;
-        $[31] = t9;
+        $[38] = T0;
+        $[39] = t3;
+        $[40] = t4;
+        $[41] = t5;
+        $[42] = t6;
+        $[43] = t7;
+        $[44] = t8;
+        $[45] = t9;
     } else {
-        t9 = $[31];
+        t9 = $[45];
     }
     return t9;
 }
-_s(MarketplaceClient, "42GASUL8pX2/N6Oh5HTh0GvQEF0=");
+_s(MarketplaceClient, "MlqCfWFLs53NAo3vFiln/D8RDGw=");
 _c = MarketplaceClient;
 function _MarketplaceClientFilteredListingsMap(item_0) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -514,32 +602,32 @@ function _MarketplaceClientFilteredListingsMap(item_0) {
                     children: item_0.title
                 }, void 0, false, {
                     fileName: "[project]/src/app/marketplace/markeplaceClient.tsx",
-                    lineNumber: 139,
+                    lineNumber: 202,
                     columnNumber: 105
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/marketplace/markeplaceClient.tsx",
-                lineNumber: 139,
+                lineNumber: 202,
                 columnNumber: 93
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
                 children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    item_0.imageUrl && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "relative w-full h-48 mb-4 rounded-xl overflow-hidden",
-                        children: item_0.imageUrl && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                             src: item_0.imageUrl,
                             alt: item_0.title,
                             fill: true,
                             className: "object-cover"
                         }, void 0, false, {
                             fileName: "[project]/src/app/marketplace/markeplaceClient.tsx",
-                            lineNumber: 139,
+                            lineNumber: 202,
                             columnNumber: 301
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/marketplace/markeplaceClient.tsx",
-                        lineNumber: 139,
-                        columnNumber: 211
+                        lineNumber: 202,
+                        columnNumber: 231
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         className: "text-lg font-medium mb-4",
@@ -549,27 +637,35 @@ function _MarketplaceClientFilteredListingsMap(item_0) {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/marketplace/markeplaceClient.tsx",
-                        lineNumber: 139,
+                        lineNumber: 202,
                         columnNumber: 395
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                        className: "w-full rounded-xl",
-                        children: "View Item"
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                        href: `/product?id=${item_0.id}`,
+                        passHref: true,
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                            className: "w-full rounded-xl",
+                            children: "View Item"
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/marketplace/markeplaceClient.tsx",
+                            lineNumber: 202,
+                            columnNumber: 510
+                        }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/marketplace/markeplaceClient.tsx",
-                        lineNumber: 139,
+                        lineNumber: 202,
                         columnNumber: 454
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/marketplace/markeplaceClient.tsx",
-                lineNumber: 139,
+                lineNumber: 202,
                 columnNumber: 198
             }, this)
         ]
     }, item_0.id, true, {
         fileName: "[project]/src/app/marketplace/markeplaceClient.tsx",
-        lineNumber: 139,
+        lineNumber: 202,
         columnNumber: 10
     }, this);
 }

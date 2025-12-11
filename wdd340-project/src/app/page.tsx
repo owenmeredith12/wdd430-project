@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -12,9 +13,9 @@ export default function Home() {
           Discover unique handcrafted treasures from talented artisans. A
           minimalist marketplace connecting creators with conscious consumers.
         </p>
-        <button className="border border-black px-8 py-3 text-lg hover:bg-black hover:text-white transition">
+        <Link href="/marketplace" className="border border-black px-8 py-3 text-lg hover:bg-black hover:text-white transition">
           Explore Marketplace
-        </button>
+        </Link>
       </section>
 
       <section className="bg-black text-white py-24">
@@ -40,9 +41,9 @@ export default function Home() {
         <h2 className="text-4xl font-bold mb-6">
           Ready to discover your next treasure?
         </h2>
-        <button className="border border-black px-8 py-3 text-lg hover:bg-black hover:text-white transition">
+        <Link href="/marketplace" className="border border-black px-8 py-3 text-lg hover:bg-black hover:text-white transition">
           Get Started
-        </button>
+        </Link>
       </section>
 
       <footer className="bg-white border-t border-black py-6 text-center">

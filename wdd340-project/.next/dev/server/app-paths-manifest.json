@@ -2,9 +2,16 @@
   "/_not-found/page": "app/_not-found/page.js",
   "/account/page": "app/account/page.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
+  "/api/logout/route": "app/api/logout/route.js",
+  "/api/product/route": "app/api/product/route.js",
+  "/api/review/route": "app/api/review/route.js",
+  "/api/reviews/route": "app/api/reviews/route.js",
   "/artisans/page": "app/artisans/page.js",
   "/login/page": "app/login/page.js",
   "/marketplace/page": "app/marketplace/page.js",
   "/page": "app/page.js",
-  "/seed/route": "app/seed/route.js"
+  "/product/[id]/page": "app/product/[id]/page.js",
+  "/product/new/page": "app/product/new/page.js",
+  "/product/page": "app/product/page.js",
+  "/product/update/page": "app/product/update/page.js"
 }
