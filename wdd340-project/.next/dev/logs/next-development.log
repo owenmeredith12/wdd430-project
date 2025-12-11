@@ -3902,3 +3902,5 @@ Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 [01:56:54.952] Browser WARN    Image with src "/images/mug1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 [01:57:00.556] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:12:56.372] Server  LOG      ✓ Compiled in 303ms
+[02:13:00.005] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
